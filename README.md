@@ -1,2 +1,7 @@
 # HomeQNotifier
-short smart HomeQ notifier 
+short & smart HomeQ notifier bash script 
+```bash
+#! /bin/bash 
+subjectR=$(date | sed 's/ //g')
+curl 'https://search.homeq.se/api/v2/search'   -H 'Connection: keep-alive'   -H 'sec-ch-ua: "Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"'   -H 'Accept: application/json, text/plain, */*'   -H 'Content-Type: application/json;charset=UTF-8'  -H 'sec-ch-ua-mobile: ?0'   -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'   -H 'sec-ch-ua-platform: "macOS"'   -H 'Origin: https://www.homeq.se'   -H 'Sec-Fetch-Site: same-site'   -H 'Sec-Fetch-Mode: cors'   -H 'Sec-Fetch-Dest: empty'   -H 'Referer: https://www.homeq.se/'   -H 'Accept-Language: en-GB,en-US;q=0.9,en;q=0.8,sv;q=0.7'   --data-raw '{"min_room":"3","min_rent":"9000","min_area":"70","shapes":["metropolitan_area.7"],"sorting":"publish_date.desc","short_lease":false,"tags":["everyone"]}'   --compressed | jq ".results[]|select (.rent < 20000)| select (.amenities.dishwasher==true and .amenities.washer==true and .amenities.drier==true and .amenities.elevator==true)" | jq '{"rent":.rent,"date":.publish_date,"amenities":.amenities,"url":("https://www.homeq.se/lagenhet/"+(.id|tostring)+"-"+(.rooms|tostring)+"rum-"+(.address.municipality)+"-stockholms-lan-"+(.address.street)), "rooms":.rooms, "add":.address, "Display":.diplay,"id":.id}'  | mail -s 'HomeQ:'$subjectR muhammed.m.abdelkader@gmail.com
+```
