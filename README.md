@@ -9,11 +9,15 @@ short & smart HomeQ notifier bash script
 
 ### Fill the sendTo with all recipients comma separated
 sendTo="rec1@gmail.com,rec12@gmail.com"
+
 ### Change Search Params as fitting your pref 
 query='{"min_room":"3","min_rent":"9000","min_area":"70","shapes":["metropolitan_area.7"],"sorting":"publish_date.desc","short_lease":false,"tags":["everyone"]}'
+
 ## File names 
 originalFile="./currentHomeQ"
 tempFile="/tmp/test"
+[ -f $originalFile ] && echo "[!] $originalFile exist." || echo > $originalFile
+
 ## Mail subject set to DateTime each time 
 subjectR=$(date | sed 's/ //g')
 
