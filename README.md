@@ -1,6 +1,6 @@
 # HomeQNotifier
 
-short & smart HomeQ notifier bash script 
+short & smart HomeQ notifier bash script. I am looking for firsthand apartment to my family on `https://homeq.se/`, and decided to have it somehow automated notify me by new listing based on my search criteria. 
 
 ## Store HomeQNotifier.sh 
 
