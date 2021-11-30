@@ -27,7 +27,7 @@ curl 'https://search.homeq.se/api/v2/search'   -H 'Connection: keep-alive'   -H 
 # Stop redundancy 
 if [ $(diff $tempFile $originalFile | wc -l) -ne 0 ];then
         cat $tempFile > $originalFile
-        cat $tempFile | base64 -d | mail -aFrom:no-reply@digitalOcean.redactive.io -r noreply@digitalocean.redactive.io -s 'HomeQ:'$subjectR $sendTo
+        cat $tempFile | base64 -d | mail -aFrom:no-reply@digitalOcean.io -r noreply@digitalocean.io -s 'HomeQ:'$subjectR $sendTo
 fi
 ```
 
